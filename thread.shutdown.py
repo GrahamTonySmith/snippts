@@ -1,7 +1,6 @@
 import time
 import threading
 import signal
-import queue
 
 
 class Job(threading.Thread):
@@ -15,8 +14,6 @@ class Job(threading.Thread):
         self.shutdown_flag = threading.Event()
 
         # ... Other thread setup code here ...
-        self.q = queue.Queue()
-        self.q.put(object)
 
     def run(self):
         print('Thread #%s started' % self.ident)
@@ -24,7 +21,6 @@ class Job(threading.Thread):
         while not self.shutdown_flag.is_set():
             # ... Job code here ...
             time.sleep(0.5)
-            print(self.q.qsize())
 
         # ... Clean shutdown code here ...
         print('Thread #%s stopped' % self.ident)
