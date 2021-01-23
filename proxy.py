@@ -27,10 +27,8 @@ class RealSubject(PSubject):
 
 class Proxy(PSubject):
 
-    _real_subject: PSubject
-
     def __init__(self, real_subject: PSubject):
-        self._real_subject = real_subject
+        self._real_subject: PSubject = real_subject
 
     def request(self) -> None:
         if self.check_access():
@@ -46,8 +44,6 @@ class Proxy(PSubject):
 
 
 def client_code(subject: PSubject) -> None:
-    # supposed to work with all objects
-    # this implements PSubject
     subject.request()
 
 

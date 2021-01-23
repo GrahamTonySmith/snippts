@@ -38,31 +38,21 @@ class Adaptee:
 
 class Adapter(PTarget):
 
-    _adaptee: Adaptee
-
     def __init__(self, adaptee: Adaptee):
-        self._adaptee = adaptee
+        self._adaptee: Adaptee = adaptee
 
     def request(self) -> str:
         return f'Adapter: (TRANSLATED) {self._adaptee.specific_request()}'
 
 
 def client_code(target: Target) -> None:
-    """
-    Client code supporting the target interface
-    """
+    """Client code supporting the target interface."""
     print(target.request(), end='\n\n')
 
 
 if __name__ == '__main__':
-    print('Client: I can work jsut fine with the Target objects')
-    target = Target()
-    client_code(target=target)
-
-    adaptee = Adaptee()
-    print('Client: The adapter class has a wierd interface.')
-    print(f'Adaptee: {adaptee.specific_request()}', end='\n\n')
+    print('Client: I can work just fine with the Target objects')
+    client_code(target=Target())
 
     print('Client: But I can work with it via the Adapter:')
-    adapter = Adapter()
-    client_code(target=adapter)
+    client_code(target=Adapter())

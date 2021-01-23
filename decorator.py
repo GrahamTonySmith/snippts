@@ -26,10 +26,8 @@ class ConcreteComponent(PComponent):
 
 class BaseDecorator(PComponent):
 
-    _component: PComponent
-
-    def __init__(self, component: PComponent) -> None:
-        self._component = component
+    def __init__(self, component: PComponent):
+        self._component: PComponent = component
 
     def operation(self) -> str:
         return self._component.operation()
@@ -45,7 +43,7 @@ class ConcreteDecoratorA(BaseDecorator):
         return 'Some decorator A additional behaviour'
 
 
-def main() -> None:
+def main():
     component = ConcreteComponent()
     print(component.operation())
 

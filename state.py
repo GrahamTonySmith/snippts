@@ -9,7 +9,6 @@ It appears as if the object has changed class.
 from typing import Protocol
 
 
-
 class PState(Protocol):
 
     def handle(self, context: PContext, msg: str) -> None: ...
@@ -28,13 +27,10 @@ class PContext(Protocol):
     def write_name(self, name: str) -> None: ...
 
 
-
 class Context(PContext):
 
-    _state: PState
-
     def __init__(self, initial_state: PState):
-        self._state = initial_state
+        self._state: PState = initial_state
 
     def handle(self, msg: str) -> None:
         self._state.handle(context=self, msg=msg)

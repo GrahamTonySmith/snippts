@@ -40,7 +40,6 @@ def service_shutdown(signum, frame):
 
 
 def main():
-
     # Register the signal handlers
     signal.signal(signal.SIGTERM, service_shutdown)
     signal.signal(signal.SIGINT, service_shutdown)

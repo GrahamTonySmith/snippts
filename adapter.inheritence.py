@@ -11,6 +11,8 @@ Applicability
 Implementation
     - multiple inheritance (class adapter)
     - composition (object adapter)
+
+Favor composition over inheritance.
 """
 
 
@@ -50,13 +52,7 @@ def client_code(target: Target) -> None:
 
 if __name__ == '__main__':
     print('Client: I can work jsut fine with the Target objects')
-    target = Target()
-    client_code(target=target)
-
-    adaptee = Adaptee()
-    print('Client: The adapter class has a wierd interface.')
-    print(f'Adaptee: {adaptee.specific_request()}', end='\n\n')
+    client_code(target=Target())
 
     print('Client: But I can work with it via the Adapter:')
-    adapter = Adapter()
-    client_code(target=adapter)
+    client_code(target=Adapter())

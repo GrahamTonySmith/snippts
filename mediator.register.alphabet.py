@@ -3,15 +3,22 @@ from collections import defaultdict
 
 
 class PEvent(Protocol):
+
     name: str
 
+
 class GenericEventHappened(PEvent):
+
     name = 'generic_event'
 
+
 class CandleClosed(PEvent):
+
     name = 'candle_closed'
 
+
 class SignalFound(PEvent):
+
     name = 'signal_found'
 
 
@@ -40,9 +47,12 @@ class BaseComponent:
 
 
 class ComponentOne(BaseComponent):
+
     alphabet: Iterable[str] = (CandleClosed.name, GenericEventHappened.name)
 
+
 class ComponentTwo(BaseComponent):
+
     alphabet: Iterable[str] = (CandleClosed.name, SignalFound.name)
 
 
@@ -79,6 +89,7 @@ def main():
     mediator.notify(event=event_happened)
     mediator.notify(event=event_signal)
     mediator.notify(event=event_candle)
+
 
 if __name__ == '__main__':
     main()

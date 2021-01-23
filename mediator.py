@@ -8,11 +8,8 @@ class PMediator(Protocol):
 
 class BaseComponent:
 
-    # public because we need to allow for a setter
-    mediator: PMediator
-
     def __init__(self, mediator: PMediator = None) -> None:
-        self.mediator = mediator
+        self.mediator: PMediator = mediator
 
 
 class ComponentOne(BaseComponent):
@@ -39,13 +36,10 @@ class ComponentTwo(BaseComponent):
 
 class ConcreteMediator(PMediator):
 
-    _component_one: ComponentOne
-    _component_two: ComponentTwo
-
     def __init__(self, component_one: ComponentOne, component_two: ComponentTwo) -> None:
-        self._component_one = component_one
+        self._component_one: ComponentOne = component_one
         self._component_one.mediator = self
-        self._component_two = component_two
+        self._component_two: ComponentTwo = component_two
         self._component_two.mediator = self
 
     def notify(self, sender: object, event: str) -> None:
@@ -59,7 +53,6 @@ class ConcreteMediator(PMediator):
 
 
 def main():
-    # The client code.
     c1 = ComponentOne()
     c2 = ComponentTwo()
     mediator = ConcreteMediator(c1, c2)
