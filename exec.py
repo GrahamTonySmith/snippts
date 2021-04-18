@@ -2,9 +2,6 @@ import traceback
 from typing import Protocol, List, Callable
 
 
-# code = '''print("hello, world")'''
-code = '''foo = lambda x: x + 5'''
-
 code = '''
 class Foo:
     def __init__(self, x):
@@ -15,7 +12,6 @@ class Foo:
 f = Foo(100)
 foo = lambda x: x + f.get()
 '''
-
 
 
 class TestIt:
@@ -42,11 +38,5 @@ class TestIt:
 
 
 if __name__ == '__main__':
-    # t = {} 
-    # exec(code, t)
-    # foo = t.get('foo')
-    # print(foo(5))
-    # code1 = input()
     ti = TestIt(code=code)
     result = ti.test()
-    # print(result)
